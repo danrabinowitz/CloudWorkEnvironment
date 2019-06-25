@@ -46,6 +46,10 @@ set -u
 # function check_state() {
 # }
 
+function update() {
+  (cd /root/CloudWorkEnvironment && git pull)
+}
+
 function install_ansible() {
   apt update
   apt install software-properties-common
@@ -69,6 +73,7 @@ function run_ansible() {
 }
 
 function main() {
+  # update
   init
 
 #   check_state
