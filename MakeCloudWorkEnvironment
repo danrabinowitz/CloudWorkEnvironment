@@ -81,9 +81,9 @@ function run_ansible() {
 function do_halt() {
   echo "Start of do_halt: ${do_halt}"
   if [ "$do_halt" = "1" ]; then
-    echo "About to fork a job to sleep and then shut down."
+    echo "Halting..."
     halt
-    echo "Forked."
+    echo "This line should not execute."
   fi
 }
 
