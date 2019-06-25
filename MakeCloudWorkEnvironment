@@ -28,6 +28,10 @@ case $key in
     init="1"
     # shift # past argument
     ;;
+    --halt)
+    do_halt="1"
+    # shift # past argument
+    ;;
     *)
             # unknown option
     ;;
@@ -37,6 +41,7 @@ done
 
 set +u
 init="$init"
+do_halt="$do_halt"
 set -u
 
 ################################################################################
@@ -73,6 +78,15 @@ function run_ansible() {
 	  infrastructure.yml)
 }
 
+function do_halt() {
+  echo "Start of do_halt: ${do_halt}"
+  if [ "$do_halt" = "1" ]; then
+    echo "About to fork a job to sleep and then shut down."
+    (sleep 10 && shutdown now) &
+    echo "Forked."
+  fi
+}
+
 function main() {
   echo "Start of main"
   # update
@@ -82,6 +96,7 @@ function main() {
   echo "I am MakeCloudWorkEnvironment"
 
   run_ansible
+  do_halt
 }
 
 ################################################################################
