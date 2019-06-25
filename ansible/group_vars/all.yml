@@ -1,0 +1,4 @@
+---
+# This is UTC time.
+# Servers are quietest around 3am Mountain time. That's about 09:00 UTC.
+unattended_upgrades_automatic_reboot_time: "09:00"
