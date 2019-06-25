@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Exit immediately if any command fails.
+set -e
+
+# Print a message to stderr when attempting to expand a variable that is not set. Also, immediately exit.
+set -u
+
+# Cause pipelines to fail on the first command which fails instead of dying later on down the pipeline.
+set -o pipefail
+
+################################################################################
+# 1) Start by parsing the arguments
+#
+# From: https://stackoverflow.com/a/14203146
+#
+# Use -gt 1 to consume two arguments per pass in the loop (e.g. each
+# argument has a corresponding value to go with it).
+# Use -gt 0 to consume one or more arguments per pass in the loop (e.g.
+# some arguments don't have a corresponding value to go with it such
+# as in the --default example).
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    --init)
+    init="1"
+    shift # past argument
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+shift # past argument or value
+done
+
+set +u
+init="$init"
+set -u
+
+################################################################################
+
+
+
+# function check_state() {
+# }
+
+function install_ansible() {
+  apt update
+  apt install software-properties-common
+  apt-add-repository --yes --update ppa:ansible/ansible
+  apt install ansible
+}
+
+function init() {
+  if [ "$init" -eq "1" ]; then
+    install_ansible
+    install_digital_ocean_py
+    # install_secrets
+  fi
+}
+
+function run_ansible() {
+  (cd /root/CloudWorkEnvironment/ansible && \
+     ansible-galaxy install -r requirements.yml --force && \
+     ansible-playbook --diff --inventory-file=/root/CloudWorkEnvironment/ansible/bin/digital_ocean.py \
+	  infrastructure.yml)
+}
+
+function main() {
+  init
+
+#   check_state
+  echo "I am MakeCloudWorkEnvironment"
+
+  run_ansible
+}
+
+################################################################################
+
+main

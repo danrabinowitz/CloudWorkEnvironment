@@ -1,0 +1,3 @@
+- src: https://github.com/danrabinowitz/ansible-role-base
+  name: danrabinowitz.role-base
+  version: master
