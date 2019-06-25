@@ -26,7 +26,7 @@ key="$1"
 case $key in
     --init)
     init="1"
-    shift # past argument
+    # shift # past argument
     ;;
     *)
             # unknown option
