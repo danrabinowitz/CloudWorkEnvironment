@@ -68,7 +68,7 @@ function init() {
 function run_ansible() {
   (cd /root/CloudWorkEnvironment/ansible && \
      ansible-galaxy install -r requirements.yml --force && \
-     ansible-playbook --diff --inventory-file=/root/CloudWorkEnvironment/ansible/bin/digital_ocean.py \
+     ansible-playbook --diff --inventory-file=/root/CloudWorkEnvironment/ansible/hosts \
 	  infrastructure.yml)
 }
 
