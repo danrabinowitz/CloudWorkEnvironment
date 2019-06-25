@@ -58,6 +58,7 @@ function install_ansible() {
 }
 
 function init() {
+  echo "Start of init: ${init}"
   if [ "$init" = "1" ]; then
     install_ansible
     install_digital_ocean_py
@@ -73,6 +74,7 @@ function run_ansible() {
 }
 
 function main() {
+  echo "Start of main"
   # update
   init
 
