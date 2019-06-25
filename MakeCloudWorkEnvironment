@@ -66,6 +66,7 @@ function init() {
 }
 
 function run_ansible() {
+  ssh-keyscan -H localhost >> ~/.ssh/known_hosts
   (cd /root/CloudWorkEnvironment/ansible && \
      ansible-galaxy install -r requirements.yml --force && \
      ansible-playbook --diff --inventory-file=/root/CloudWorkEnvironment/ansible/hosts \
