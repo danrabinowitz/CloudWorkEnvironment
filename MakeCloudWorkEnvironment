@@ -58,7 +58,7 @@ function install_ansible() {
 }
 
 function init() {
-  if [ "$init" -eq "1" ]; then
+  if [ "$init" = "1" ]; then
     install_ansible
     install_digital_ocean_py
     # install_secrets
