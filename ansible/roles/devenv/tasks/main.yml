@@ -1,0 +1,18 @@
+- name: Check if globalprotect is installed
+  command: dpkg-query -W globalprotect
+  register: globalprotect_check_deb
+  failed_when: globalprotect_check_deb.rc > 1
+  changed_when: globalprotect_check_deb.rc == 1
+
+- copy:
+    src: "GlobalProtect_deb-4.1.9.0-2.deb"
+    dest: "/var/tmp/globalprotect.deb"
+    owner: root
+    group: root
+    mode: 0400
+  when: globalprotect_check_deb.rc == 1
+
+- name: Install globalprotect
+  apt:
+    deb: "/var/tmp/globalprotect.deb"
+  when: globalprotect_check_deb.rc == 1
