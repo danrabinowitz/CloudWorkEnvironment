@@ -52,7 +52,7 @@ function update() {
 
 function install_ansible() {
   apt update
-  apt install software-properties-common
+  apt install -y software-properties-common
   apt-add-repository --yes --update ppa:ansible/ansible
   apt install ansible
 }
@@ -61,7 +61,6 @@ function init() {
   echo "Start of init: ${init}"
   if [ "$init" = "1" ]; then
     install_ansible
-    install_digital_ocean_py
     # install_secrets
   fi
 }
