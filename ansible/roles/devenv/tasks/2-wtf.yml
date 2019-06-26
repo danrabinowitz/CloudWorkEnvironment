@@ -1,0 +1,29 @@
+- name: Download wtf
+  unarchive:
+    src: https://github.com/wtfutil/wtf/releases/download/v0.12.0/wtf_0.12.0_linux_amd64.tar.gz
+    dest: /var/tmp/
+    remote_src: yes
+
+- name: Install wtf
+  copy:
+    src: /var/tmp/wtf_0.12.0_linux_amd64/wtf
+    dest: /usr/local/bin/wtf
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create wtf config dir
+  file:
+    path: "/home/{{ custom_username }}/.config/wtf"
+    state: directory
+    owner: {{ custom_username }}
+    group: {{ custom_username }}
+    mode: 0700
+- name: Install wtf config
+  template:
+    src: home/wtf/config.yml
+    dest: /home/{{ custom_username }}/.config/wtf/config.yml
+    owner: {{ custom_username }}
+    group: {{ custom_username }}
+    mode: 0600
