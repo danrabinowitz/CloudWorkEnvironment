@@ -13,7 +13,7 @@ hostname=$1
 hostname_for_metrics=$(echo "$hostname" | sed 's/\./_/g')
 
 
-textfile_collector_dir="/var/lib/node_exporter/textfile_collector"
+textfile_collector_dir="/var/lib/prometheus/node-exporter"
 textfile_collector_file="${textfile_collector_dir}/vpn_status.prom"
 temp_file="${textfile_collector_file}.$$"
 
