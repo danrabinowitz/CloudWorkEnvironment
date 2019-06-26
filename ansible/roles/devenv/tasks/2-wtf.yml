@@ -20,10 +20,10 @@
     owner: "{{ custom_username }}"
     group: "{{ custom_username }}"
     mode: 0700
-- name: Install wtf config
-  template:
-    src: home/wtf/config.yml
-    dest: /home/{{ custom_username }}/.config/wtf/config.yml
-    owner: "{{ custom_username }}"
-    group: "{{ custom_username }}"
-    mode: 0600
+# - name: Install wtf config
+#   template:
+#     src: home/wtf/config.yml
+#     dest: /home/{{ custom_username }}/.config/wtf/config.yml
+#     owner: "{{ custom_username }}"
+#     group: "{{ custom_username }}"
+#     mode: 0600
