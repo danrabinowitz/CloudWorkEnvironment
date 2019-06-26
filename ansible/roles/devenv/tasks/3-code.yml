@@ -2,8 +2,8 @@
   file:
     path: "/home/{{ custom_username }}/{{ item }}"
     state: directory
-    owner: {{ custom_username }}
-    group: {{ custom_username }}
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
     mode: 0700
   with_items:
     - code/
