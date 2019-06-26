@@ -6,13 +6,13 @@
     group: root
     mode: '0755'
 
-- name: Create textfile_collector dir
-  file:
-    path: "/var/lib/{{ item }}"
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-  with_items:
-    - node_exporter
-    - node_exporter/textfile_collector
+# - name: Create textfile_collector dir
+#   file:
+#     path: "/var/lib/{{ item }}"
+#     state: directory
+#     owner: root
+#     group: root
+#     mode: 0755
+#   with_items:
+#     - node_exporter
+#     - node_exporter/textfile_collector
