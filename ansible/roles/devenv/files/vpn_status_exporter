@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Exit immediately if any command fails.
+set -e
+
+# Print a message to stderr when attempting to expand a variable that is not set. Also, immediately exit.
+set -u
+
+# Cause pipelines to fail on the first command which fails instead of dying later on down the pipeline.
+set -o pipefail
+
+hostname=$1
+hostname_for_metrics=$(echo "$hostname" | sed 's/\./_/g')
+
+
+textfile_collector_dir="/var/lib/node_exporter/textfile_collector"
+textfile_collector_file="${textfile_collector_dir}/vpn_status.prom"
+temp_file="${textfile_collector_file}.$$"
+
+while true; do 
+  time_ms=$(ping -n -q -c 1 "$hostname" | egrep '(rtt|round-trip) ' | sed -E 's/^.+ = ([[:digit:]\.]+)\/.+$/\1/')
+
+  # Write out metrics to a temporary file.
+  END="$(date +%s)"
+  cat << EOF > "$temp_file"
+ping_time_${hostname_for_metrics}_ms ${time_ms}
+EOF
+
+  # Rename the temporary file atomically.
+  # This avoids the node exporter seeing half a file.
+  mv "$temp_file" "$textfile_collector_file"
+
+  sleep 30
+done

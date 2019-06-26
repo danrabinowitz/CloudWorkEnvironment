@@ -1,0 +1,18 @@
+- name: Install vpn_status_exporter
+  copy:
+    src: vpn_status_exporter
+    dest: /usr/local/bin/vpn_status_exporter
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Create textfile_collector dir
+  file:
+    path: "/var/lib/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - node_exporter
+    - node_exporter/textfile_collector
