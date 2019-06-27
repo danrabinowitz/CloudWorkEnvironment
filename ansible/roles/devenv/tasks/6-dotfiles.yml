@@ -1,16 +1,19 @@
-- name: Install zsh
+- name: Install packages
   apt:
-    name: zsh
+    name: "{{ item }}"
     state: present
     update_cache: yes
     cache_valid_time: 3600
+  with_items:
+    - zsh
+    - direnv
+    - zsh-syntax-highlighting
 
-- name: Install direnv
-  apt:
-    name: direnv
-    state: present
-    update_cache: yes
-    cache_valid_time: 3600
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+- name: Install zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "/usr/local/share/zsh-autosuggestions"
 
 - name: Set custom_username to use zsh
   user:
