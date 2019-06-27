@@ -17,23 +17,20 @@
 
 - name: Create symbolic links for dotfiles
   file:
-    src: ".dotfiles.git/dot.dircolors"
-    dest: "/home/{{ custom_username }}/.dircolors"
+    src: ".dotfiles.git/dot.{{ item }}"
+    dest: "/home/{{ custom_username }}/.{{ item }}"
     state: link
-
-
-
-# create_symlink_for_dotfiles_git 'bash_profile'
-# create_symlink_for_dotfiles_git 'bashrc'
-# create_symlink_for_dotfiles_git 'dircolors'
-# create_symlink_for_dotfiles_git 'emacs'
-# create_symlink_for_dotfiles_git 'emacs.d'
-# create_symlink_for_dotfiles_git 'gitconfig'
-# create_symlink_for_dotfiles_git 'irbrc'
-# create_symlink_for_dotfiles_git 'profile'
-# #create_symlink_for_dotfiles_git 'screenrc'
-# create_symlink_for_dotfiles_git 'inputrc'
-# create_symlink_for_dotfiles_git 'tmux.conf'
-# create_symlink_for_dotfiles_git 'psqlrc'
-# create_symlink_for_dotfiles_git 'my.cnf'
-# create_symlink_for_dotfiles_git 'gitignore_global'
+  with_items:
+    - bash_profile
+    - bashrc
+    - dircolors
+    - emacs
+    - emacs.d
+    - gitconfig
+    - irbrc
+    - profile
+    - inputrc
+    - tmux.conf
+    - psqlrc
+    - my.cnf
+    - gitignore_global
