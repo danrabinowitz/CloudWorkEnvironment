@@ -5,6 +5,13 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- name: Install direnv
+  apt:
+    name: direnv
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: Set custom_username to use zsh
   user:
     name: "{{ custom_username }}"
@@ -30,6 +37,17 @@
     recurse: yes
     owner: "{{ custom_username }}"
     group: "{{ custom_username }}"
+
+- name: Create .dotfiles
+  file:
+    src: ".dotfiles.git"
+    dest: "/home/{{ custom_username }}/.dotfiles"
+    state: link
+- name: Create Config
+  file:
+    src: ".dotfiles.git"
+    dest: "/home/{{ custom_username }}/Config"
+    state: link
 
 - name: Create symbolic links for dotfiles
   file:
