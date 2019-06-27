@@ -9,7 +9,7 @@ set -u
 # Cause pipelines to fail on the first command which fails instead of dying later on down the pipeline.
 set -o pipefail
 
-hostname=$1
+hostname="github.internal.digitalocean.com"
 hostname_for_metrics=$(echo "$hostname" | sed 's/\./_/g')
 
 

@@ -6,6 +6,19 @@
     group: root
     mode: '0755'
 
+- name: Install vpn_status_exporter.service
+  copy:
+    src: "vpn_status_exporter.service"
+    dest: "/lib/systemd/system/"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Start vpn_status_exporter
+  service:
+    name: vpn_status_exporter
+    state: started
+
 # - name: Create textfile_collector dir
 #   file:
 #     path: "/var/lib/{{ item }}"

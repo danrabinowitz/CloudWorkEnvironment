@@ -1,0 +1,8 @@
+[Unit]
+Description=vpn_status_exporter service
+
+[Service]
+ExecStart=/usr/local/bin/vpn_status_exporter
+
+[Install]
+WantedBy=multi-user.target
