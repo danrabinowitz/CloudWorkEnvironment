@@ -14,6 +14,13 @@
   git:
     repo: https://github.com/danrabinowitz/dotfiles.git
     dest: "/home/{{ custom_username }}/.dotfiles.git"
+- name: Set ownership of dotfiles
+  file:
+    path: "/home/{{ custom_username }}/.dotfiles.git"
+    state: directory
+    recurse: yes
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
 
 - name: Create symbolic links for dotfiles
   file:
