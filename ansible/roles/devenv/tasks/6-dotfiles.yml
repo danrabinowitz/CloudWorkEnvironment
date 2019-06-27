@@ -1,0 +1,4 @@
+- name: Checkout personal dotfiles repo
+  git:
+    repo: https://github.com/danrabinowitz/dotfiles.git
+    dest: "/home/{{ custom_username }}/.dotfiles.git"

@@ -3,3 +3,4 @@
 - include: 3-code.yml
 - include: 4-mosh.yml
 - include: 5-exporter_vpn.yml
+- include: 6-dotfiles.yml
