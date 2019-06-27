@@ -12,9 +12,8 @@
 
 - name: Install diff-so-fancy
   copy:
-    src: diff-so-fancy
-    dest: /usr/local/bin/wtf
-    remote_src: yes
+    src: "diff-so-fancy"
+    dest: "/usr/local/bin/diff-so-fancy"
     owner: root
     group: root
     mode: '0755'
