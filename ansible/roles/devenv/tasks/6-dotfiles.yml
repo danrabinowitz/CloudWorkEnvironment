@@ -20,6 +20,7 @@
     src: ".dotfiles.git/dot.{{ item }}"
     dest: "/home/{{ custom_username }}/.{{ item }}"
     state: link
+    force: yes
   with_items:
     - bash_profile
     - bashrc
