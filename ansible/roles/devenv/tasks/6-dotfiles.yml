@@ -46,8 +46,13 @@
     - gitconfig
     - irbrc
     - profile
+    - profile_interactive
     - inputrc
     - tmux.conf
     - psqlrc
     - my.cnf
     - gitignore_global
+    - zshrc
+    - gemrc
+    - rspec
+    - railsrc
