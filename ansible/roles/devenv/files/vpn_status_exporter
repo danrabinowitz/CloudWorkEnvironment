@@ -18,7 +18,9 @@ textfile_collector_file="${textfile_collector_dir}/vpn_status.prom"
 temp_file="${textfile_collector_file}.$$"
 
 while true; do 
+  set +e
   time_ms=$(ping -n -q -c 1 "$hostname" | egrep '(rtt|round-trip) ' | sed -E 's/^.+ = ([[:digit:]\.]+)\/.+$/\1/')
+  set -e
 
   # Write out metrics to a temporary file.
   END="$(date +%s)"
