@@ -5,6 +5,11 @@
     update_cache: yes
     cache_valid_time: 3600
 
+- name: Set custom_username to use zsh
+  user:
+    name: "{{ custom_username }}"
+    shell: /bin/zsh
+
 - name: Checkout personal dotfiles repo
   git:
     repo: https://github.com/danrabinowitz/dotfiles.git
