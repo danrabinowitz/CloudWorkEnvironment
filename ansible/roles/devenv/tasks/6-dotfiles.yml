@@ -10,6 +10,16 @@
     name: "{{ custom_username }}"
     shell: /bin/zsh
 
+- name: Install diff-so-fancy
+  copy:
+    src: diff-so-fancy
+    dest: /usr/local/bin/wtf
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '0755'
+
+
 - name: Checkout personal dotfiles repo
   git:
     repo: https://github.com/danrabinowitz/dotfiles.git
