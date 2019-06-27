@@ -9,6 +9,12 @@
     - direnv
     - zsh-syntax-highlighting
 
+- name: Symlink zsh-syntax-highlighting
+  file:
+    src: "/usr/share/zsh-syntax-highlighting"
+    dest: "/usr/local/share/zsh-syntax-highlighting"
+    state: link
+
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 - name: Install zsh-autosuggestions
   git:
