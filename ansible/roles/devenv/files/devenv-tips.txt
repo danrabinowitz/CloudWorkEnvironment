@@ -1,0 +1,4 @@
+# VPN
+Connect: globalprotect connect --portal vpn-nyc3.digitalocean.com
+Status: globalprotect show --status and globalprotect show --details
+

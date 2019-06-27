@@ -77,3 +77,34 @@
     - gemrc
     - rspec
     - railsrc
+
+
+- name: Install devenv-tips.txt
+  copy:
+    src: "devenv-tips.txt"
+    dest: "/home/{{ custom_username }}/devenv-tips.txt"
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
+    mode: '0400'
+
+
+# Jump
+# https://github.com/gsamokovarov/jump/releases/download/v0.23.0/jump_0.23.0_amd64.deb
+- name: Check if jump is installed
+  command: dpkg-query -W jump
+  register: jump_check_deb
+  failed_when: jump_check_deb.rc > 1
+  changed_when: jump_check_deb.rc == 1
+
+- copy:
+    src: "jump_0.23.0_amd64.deb"
+    dest: "/var/tmp/jump.deb"
+    owner: root
+    group: root
+    mode: 0400
+  when: jump_check_deb.rc == 1
+
+- name: Install jump
+  apt:
+    deb: "/var/tmp/jump.deb"
+  when: jump_check_deb.rc == 1
