@@ -4,3 +4,11 @@
     state: present
     update_cache: yes
     cache_valid_time: 3600
+
+- name: "Mosh: Allow firewall access via wg0"
+  ufw:
+    rule: allow
+    port: "60000:61000"
+    proto: udp
+    direction: in
+    interface: wg0
