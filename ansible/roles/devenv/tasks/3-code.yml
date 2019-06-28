@@ -15,3 +15,39 @@
 # - git:
 #     repo: git@github.internal.digitalocean.com:digitalocean/inbound-sendgrid.git
 #     dest: "/home/{{ custom_username }}/code/src/DigitalOcean/inbound-sendgrid"
+
+# - name: Checkout foo repo
+#   git:
+#     repo: https://github.com/foo/bar.git
+#     dest: "/home/{{ custom_username }}/code/src/foo/bar"
+#   become: "{{ custom_username }}"
+
+
+- name: "docker : Add apt key"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: "docker : Add repository"
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    state: present
+    filename: docker
+
+- name: "docker : Install 'docker-ce' and supporting packages"
+  apt:
+    name: ['docker-ce', 'python-setuptools', 'python-pip']
+    update_cache: yes
+    install_recommends: no
+
+- name: "docker: Install pip packages"
+  pip:
+    name: docker
+
+- name: "docker : Add users to the docker group"
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  with_items:
+    - "{{ custom_username }}"
