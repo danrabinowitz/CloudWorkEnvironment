@@ -70,19 +70,20 @@
     - dircolors
     - emacs
     - emacs.d
+    - gemrc
     - gitconfig
+    - gitignore_global
+    - inputrc
     - irbrc
+    - my.cnf
     - profile
     - profile_interactive
-    - inputrc
-    - tmux.conf
     - psqlrc
-    - my.cnf
-    - gitignore_global
-    - zshrc
-    - gemrc
-    - rspec
     - railsrc
+    - rspec
+    - tmux.conf
+    - tmux.conf.local
+    - zshrc
 
 
 - name: Install devenv-tips.txt
