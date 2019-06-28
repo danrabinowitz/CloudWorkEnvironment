@@ -86,6 +86,14 @@
     - zshrc
 
 
+- name: Install dot.bashrc_local
+  copy:
+    src: "dot.bashrc_local"
+    dest: "/home/{{ custom_username }}/.bashrc_local"
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
+    mode: '0400'
+
 - name: Install devenv-tips.txt
   copy:
     src: "devenv-tips.txt"
@@ -93,7 +101,6 @@
     owner: "{{ custom_username }}"
     group: "{{ custom_username }}"
     mode: '0400'
-
 
 # Jump
 # https://github.com/gsamokovarov/jump/releases/download/v0.23.0/jump_0.23.0_amd64.deb
