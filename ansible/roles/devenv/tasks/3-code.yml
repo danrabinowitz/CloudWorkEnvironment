@@ -40,9 +40,9 @@
     update_cache: yes
     install_recommends: no
 
-- name: "docker: Install pip packages"
-  pip:
-    name: docker
+# - name: "docker: Install pip packages"
+#   pip:
+#     name: docker
 
 - name: "docker : Add users to the docker group"
   user:
