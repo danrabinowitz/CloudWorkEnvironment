@@ -125,3 +125,11 @@
   apt:
     deb: "/var/tmp/jump.deb"
   when: jump_check_deb.rc == 1
+
+- name: Install Cisco dev secrets
+  copy:
+    src: cisco/dev.secrets.env
+    dest: "/home/{{ custom_username }}/secrets/cisco/dev/secrets/env"
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
+    mode: 0400

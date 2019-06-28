@@ -11,6 +11,10 @@
     - code/src/DigitalOcean
     - code/src/VIC
     - code/src/danrabinowitz
+    - secrets
+    - secrets/cisco
+    - secrets/cisco/dev
+    - secrets/cisco/dev/secrets
 
 # - git:
 #     repo: git@github.internal.digitalocean.com:digitalocean/inbound-sendgrid.git
