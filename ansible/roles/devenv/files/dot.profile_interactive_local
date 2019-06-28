@@ -1,3 +1,5 @@
+echo "I am profile_interactive_local"
+
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ] && [[ -z "$SKIP_TMUX" ]]; then
   tmux new-session -ADs main && exit
 fi
