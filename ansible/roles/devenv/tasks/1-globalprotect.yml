@@ -16,3 +16,10 @@
   apt:
     deb: "/var/tmp/globalprotect.deb"
   when: globalprotect_check_deb.rc == 1
+
+- name: Ensure we only run it as the custom user
+  file:
+    path: /opt/paloaltonetworks/globalprotect/globalprotect
+    owner: "{{ custom_username }}"
+    group: "{{ custom_username }}"
+    mode: '0750'
